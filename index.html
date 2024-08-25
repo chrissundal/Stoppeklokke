@@ -1,66 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
         body {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-family: verdana;
-}
-.buttons{
-    display: flex;
-    flex-direction: row;
-}
-.klokke {
-   
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    width: 350px;
-    height: 350px;
-    background-color:coral;
-    border: 2px solid black;
-    border-radius: 10px;
-}
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-family: verdana;
+        }
 
-h1 {
-    color: black;
-    text-align: center;
-}
-.btn {
-    margin-top: 60px;
-    width: 100px;
-    height: 40px;
-    border: 3px solid white;
-    cursor: pointer;
-    color: white;
-    font-size: x-large;
-    border-radius: 50px;
-}
-.btn:hover {
-    transform: scale(1.080);
-    
-}
+        .buttons {
+            display: flex;
+            flex-direction: row;
+        }
 
-#start {
-    background-color: #009779;
-}
+        .klokke {
 
-#stop {
-    background-color: #c91400;
-}
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            width: 350px;
+            height: 350px;
+            background-color: coral;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
 
-#pause {
-    background-color:darkgray;
-}
-.display{
-            height:30px;
-            width:100px;
+        h1 {
+            color: black;
+            text-align: center;
+        }
+
+        .btn {
+            margin-top: 60px;
+            width: 100px;
+            height: 40px;
+            border: 3px solid white;
+            cursor: pointer;
+            color: white;
+            font-size: x-large;
+            border-radius: 50px;
+        }
+
+        .btn:hover {
+            transform: scale(1.080);
+
+        }
+
+        #start {
+            background-color: #009779;
+        }
+
+        #stop {
+            background-color: #c91400;
+        }
+
+        #pause {
+            background-color: darkgray;
+        }
+
+        .display {
+            height: 30px;
+            width: 100px;
             border: 1px solid black;
             margin-top: 10px;
             background-color: white;
@@ -68,52 +74,52 @@ h1 {
             font-size: larger;
         }
 
-        .roundsList{
+        .roundsList {
             background-color: white;
-            height:100px;
-            width:150px;
+            height: 100px;
+            width: 150px;
             border: 1px solid black;
             margin-top: 10px;
             font-size: medium;
         }
     </style>
 </head>
+
 <body>
     <h1>Stoppeklokke</h1>
-    
+
     <div class="klokke">
-        <div class="buttons" >
+        <div class="buttons">
             <button class="btn" id="start" onclick="startTimer()">Start</button>
             <button class="btn" id="stop" onclick="lapTimer()">Lap</button>
             <button class="btn" id="pause" onclick="stopTimer()">Pause</button><br>
         </div>
         <div id="app" class="display"></div><br><br>
-        Rundetider:<div id="lapTime" class="roundsList" ></div>
-    </div>    
-        <script>
-            const app = document.getElementById('app');
-            const roundTime = document.getElementById('lapTime');
-            let seconds = 0;
-            var myInterval;
-            
-            function startTimer(){
-           myInterval = setInterval(countSeconds, 1000);
-           
-        }
-        
+        Rundetider:<div id="lapTime" class="roundsList"></div>
+    </div>
+    <script>
+        const app = document.getElementById('app');
+        const roundTime = document.getElementById('lapTime');
+        let seconds = 0;
+        var myInterval;
 
+        function startTimer() {
+            myInterval = setInterval(countSeconds, 1000);
+
+        }
         function countSeconds() {
             app.innerHTML = seconds;
             seconds++;
         }
         function lapTimer() {
-            roundTime.innerHTML += `<li>${seconds-1} sekunder</li>`;
+            roundTime.innerHTML += `<li>${seconds - 1} sekunder</li>`;
             seconds = 0;
         }
-        function stopTimer(){
+        function stopTimer() {
             clearInterval(myInterval);
-            
+
         }
     </script>
 </body>
+
 </html>
