@@ -55,7 +55,7 @@ h1 {
     background-color: #c91400;
 }
 
-#reset {
+#pause {
     background-color:darkgray;
 }
 .display{
@@ -85,7 +85,7 @@ h1 {
         <div class="buttons" >
             <button class="btn" id="start" onclick="startTimer()">Start</button>
             <button class="btn" id="stop" onclick="lapTimer()">Lap</button>
-            <button class="btn" id="reset" onclick="stopTimer()">Reset</button><br>
+            <button class="btn" id="pause" onclick="stopTimer()">Pause</button><br>
         </div>
         <div id="app" class="display"></div><br><br>
         Rundetider:<div id="lapTime" class="roundsList" ></div>
@@ -94,11 +94,13 @@ h1 {
             const app = document.getElementById('app');
             const roundTime = document.getElementById('lapTime');
             let seconds = 0;
-            var minTimer;
-
-        function startTimer() {
-            setInterval(countSeconds, 1000);
+            var myInterval;
+            
+            function startTimer(){
+           myInterval = setInterval(countSeconds, 1000);
+           
         }
+        
 
         function countSeconds() {
             app.innerHTML = seconds;
@@ -106,11 +108,11 @@ h1 {
         }
         function lapTimer() {
             roundTime.innerHTML += `<li>${seconds-1} sekunder</li>`;
-            clearInterval(minTimer);
             seconds = 0;
         }
         function stopTimer(){
-            location.reload()
+            clearInterval(myInterval);
+            
         }
     </script>
 </body>
