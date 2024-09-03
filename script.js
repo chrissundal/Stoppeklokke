@@ -1,20 +1,41 @@
-const app = document.getElementById('app');
-const roundTime = document.getElementById('lapTime');
+
+let roundTime = '';
 let seconds = 0;
-var myInterval;
+var timer;
+const app = document.getElementById('app');
+
+updateView();
+function updateView() {
+    let html = `
+        <h1>Stoppeklokke</h1>
+
+    <div class="klokke">
+        <div class="buttons">
+            <button class="start" onclick="startTimer()">Start</button>
+            <button class="stop" onclick="lapTimer()">Lap</button>
+            <button class="pause" onclick="stopTimer()">Pause</button><br>
+        </div>
+        <div class="display">${seconds}</div>
+        Rundetider:<div class="roundsList">${roundTime}</div>
+    </div>
+        `;
+    app.innerHTML = html;
+}
 
 function startTimer() {
-    myInterval = setInterval(countSeconds, 1000);
+    timer = setInterval(countSeconds, 1000)
 }
 function countSeconds() {
-    app.innerHTML = seconds;
     seconds++;
+    updateView();
 }
+
 function lapTimer() {
-    roundTime.innerHTML += `<li>${seconds - 1} sekunder</li>`;
+    roundTime += `<li>${seconds} sekunder</li>`;
     seconds = 0;
+    updateView();
 }
 function stopTimer() {
-    clearInterval(myInterval);
+    clearInterval(timer);
 
 }
